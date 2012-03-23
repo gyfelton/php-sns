@@ -1,6 +1,7 @@
 <?php
-// initialize a session
+include 'common.php';
 
+// initialize a session
 session_start();
 
 ?>
@@ -13,7 +14,7 @@ session_start();
 
 <?php
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['id'])) {
 
     // if no session under 'username'
 
@@ -52,10 +53,10 @@ if (!isset($_SESSION['username'])) {
     
 <?php
 
-} else if (isset($_SESSION['username'])) {
+} else if (isset($_SESSION['id'])) {
 
 	// if a previous session exists, jump to user particular page
-	header("Location: temp.php");
+	header("Location: home.php");
 }
 
 ?>

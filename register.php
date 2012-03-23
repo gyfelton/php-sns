@@ -4,8 +4,7 @@
 <body>
 
 <?php
-
-include 'connectDB.php';
+include 'common.php';
 
 // retrieve form data
 if( !$_POST['username'] or !$_POST['password'] or !$_POST['confirm_password'])
