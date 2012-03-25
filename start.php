@@ -42,7 +42,7 @@ if (!isset($_SESSION['id'])) {
     <form action="register.php" method="post">
 
         <p align="center">Username: <input type="text" name="username"></p>
-        <!-- <p align="center">Email address: <input type="text" name="email"></p>  -->
+        <p align="center">Email address: <input type="text" name="email"></p>
 		<p align="center">Password: <input type="password" name="password"></p>
 		<p align="center">Confirm Password: <input type="password" name="confirm_password"></p>
         <p align="center"><input type="submit" name="submit" value="Register"></p>

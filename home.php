@@ -29,18 +29,55 @@ $username = $_SESSION['name'];
 
 <body>
 <br>
+<form action="search.php" method="post" >
+	<input type="text" name="msg" size="20">
+	<input type="submit" value="Search">
+</form>
 <?php
+
 //assuming session is active
 //retrive user's data
 
 //TODO 1. retrieve user's detail
 //$user_detail_query = "INSERT INTO `user_password`(`username`, `password`) VALUES ('".$username."','".$password."')";
+//Number of posts, number of group
+
+$user_detail_query = "SELECT email, dob FROM user_detail_info WHERE uid = ".$uid;
+if ($result = mysql_query($user_detail_query, $connection))
+{
+	list($u_email, $dob) = mysql_fetch_row($result);
+	echo "Your email: $u_email<br/>" ;
+	echo "DOB: $dob<br/>";
+}
+
+
+$num_post_query = "SELECT count(*) FROM user_post WHERE uid = ".$uid;
+$num_group_query = "SELECT count(*) FROM group_enrollment WHERE uid = ".$uid;
+
+if ($result = mysql_query($num_post_query, $connection))
+{
+	list($num_post) = mysql_fetch_row($result);
+	echo "You have $num_post posts<br/>";
+}
+if ($result = mysql_query($num_group_query, $connection))
+{
+	list($num_group) = mysql_fetch_row($result);
+	echo "You are enrolled in $num_group groups";
+
+}
+
+//$result = mysql_query($num_post_query, $connection);
+//$num_post = mysql_fetch_row($result);
+//echo $num_post;
 ?>
 
 <table>
 <tr>
 <td><?php //TODO display detail info here
- echo "Your email: ".$_SESSION['name']
+
+
+
+ //echo "Your email: ".$_SESSION['name'] 
  ?></td> 
 </tr>
 </table>

@@ -26,7 +26,8 @@ if (isset($_POST['group_name']) and isset($_POST['group_desc']))
 		$link_creator_to_group = "INSERT INTO `group_enrollment`(`uid`, `group_id`, `start_date`) 
 									VALUES (".$uid.",".$group_id.", NOW() )";
 		if (mysql_query($link_creator_to_group, $connection)) {
-			echo 'Successful!';
+			echo 'Successful!<br>';
+			echo "<a href=\"group.php?gid=".$group_id."\">Click here to jump to group page</a>";
 		} else
 		{
 			//show ERROR
@@ -41,7 +42,6 @@ if (isset($_POST['group_name']) and isset($_POST['group_desc']))
 } else {
 ?>
     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
-
         <p align="left">Group name: <input type="text" name="group_name"></p>
 		<p align="left">Description: <input type="text" name="group_desc"></p>
         <p align="left"><input type="submit" name="submit" value="Create group"></p>

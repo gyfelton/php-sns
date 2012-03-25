@@ -12,10 +12,12 @@ function showLoginFailMsg()
 }
 
 // retrieve form data
-if( !$_POST['username'] || $_POST['password'])
+if( !$_POST['username'] || !$_POST['password'])
 {
 	//error
 	//show error
+	echo 'ERROR! no username or password not filled in<br>';
+	showBackButton();
 }
 
 //now connect to database and check whether can register successfully or not

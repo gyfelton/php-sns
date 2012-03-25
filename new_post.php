@@ -39,12 +39,18 @@ if (isset($_POST['title']) and isset($_POST['content']))
 	mysql_close($connection);
 } else {
 ?>
-    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
-
+<html>
+<body>   
+	<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
         <p align="left">Title: <input type="text" name="title"></p>
-		<p align="left">Content: <input type="text" name="content"></p>
+		
+        Content:
+        <p><textarea name="content" COLS=40 ROWS=6></textarea></p>
         <p align="left"><input type="submit" name="submit" value="Submit"></p>
     </form>
+ </body>
+
+</html>	
 <?php 
 		} 
 ?>	
