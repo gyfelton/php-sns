@@ -16,14 +16,14 @@ $gid = $_GET['gid'];
 if (isset($_POST['title']) and isset($_POST['content']))
 {
 	$connection = connectToDB();
-	$new_post_query = "INSERT INTO `user_post`(`uid`, `title`, `full_text`) 
-	 						VALUES (".$uid.",'".$_POST['title']."','".$_POST['content']."')";
+	$new_post_query = "INSERT INTO `user_post`(`uid`, `title`, `full_text`)
+	VALUES (".$uid.",'".$_POST['title']."','".$_POST['content']."')";
 	if (mysql_query($new_post_query, $connection))
 	{
 		//link the post to the group
 		$post_id = mysql_insert_id($connection);
-		$link_post_to_group = "INSERT INTO `post_belonging_to_group`(`post_id`, `group_id`) 
-									VALUES (".$post_id.",".$gid.")";
+		$link_post_to_group = "INSERT INTO `post_belonging_to_group`(`post_id`, `group_id`)
+		VALUES (".$post_id.",".$gid.")";
 		if (mysql_query($link_post_to_group, $connection)) {
 			echo 'Successful!';
 		} else
@@ -34,23 +34,29 @@ if (isset($_POST['title']) and isset($_POST['content']))
 	{
 		//TODO show error
 	}
-	
+
 	// close connection
 	mysql_close($connection);
 } else {
-?>
+	?>
 <html>
-<body>   
+<body>
 	<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
-        <p align="left">Title: <input type="text" name="title"></p>
-		
-        Content:
-        <p><textarea name="content" COLS=40 ROWS=6></textarea></p>
-        <p align="left"><input type="submit" name="submit" value="Submit"></p>
-    </form>
- </body>
+		<p align="left">
+			Title: <input type="text" name="title">
+		</p>
 
-</html>	
+		Content:
+		<p>
+			<textarea name="content" COLS=40 ROWS=6></textarea>
+		</p>
+		<p align="left">
+			<input type="submit" name="submit" value="Submit">
+		</p>
+	</form>
+</body>
+
+</html>
 <?php 
-		} 
-?>	
+}
+?>
