@@ -8,6 +8,17 @@ $usrname = $_SESSION['name'];
 
 //connect to DB
 $connection = connectToDB();
+//query to get available information
+$existing_info = "SELECT first_name, last_name, gender, dob, occupation, facebook, twitter FROM `user_detail_info` WHERE uid = $uid";
+
+if ($result = mysql_query($existing_info, $connection))
+{
+	list($first_name, $last_name, $gender, $dob, $occupation, $facebook, $twitter) = mysql_fetch_row($result);
+	mysql_free_result($result);
+} else
+{
+	echo 'ERROR when trying to get user info'.mysql_error();
+}
 
 //if data is filled in, update the entry
 if (isset($_POST['first_name']) && isset($_POST['last_name']))
@@ -19,8 +30,12 @@ if (isset($_POST['first_name']) && isset($_POST['last_name']))
 	$year = $_POST['year1'];
 	$month = $_POST['month1'];
 	$day = $_POST['day1'];
-	$dob = $year."-".$month."-".$day;
-	//TODO error when any of the field is empty
+	if ($year =='-Year-' or $month == '-Month-' or $day == '-Day-' )
+	{
+	} else
+	{
+		$dob = $year."-".$month."-".$day;
+	}
 	$twitter = $_POST['twitter'];
 	$facebook = $_POST['facebook'];
 	$occupation = $_POST['occupation'];
@@ -42,13 +57,11 @@ if (isset($_POST['first_name']) && isset($_POST['last_name']))
 <html>
 
 <head>
-Hi
+Welcome
 <?php echo $usrname; ?>
- Congratulations! You have successfully registered. Please take a moment
-to fill in your information below.
-</head>
+ ! Please take a moment
+to let us know your information below.
 
-<head>
 <title></title>
 <script type="text/javascript">
 /*<![CDATA[*/
@@ -76,16 +89,22 @@ d.selectedIndex=0;
 	<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
 
 		<p align="left">
-			First Name:<input type="text" name="first_name">
-		
+			First Name:<input type="text" value = "<?php echo $first_name?>" name="first_name">
 		
 		<p align="left">
-			Last Name:<input type="text" name="last_name">
+			Last Name:<input type="text" value = "<?php echo $last_name?>" name="last_name">
 		</p>
 		<p align="left">
-			Gender:<input name="gender" type="radio" value="M">Male <input
-				name="gender" type="radio" value="F" />Female
+			Gender:
+			<input name="gender" type="radio" value="M"  <?php if ($gender=='M') echo "checked=\"checked\""?> >Male
+			<input name="gender" type="radio" value="F" <?php if ($gender=='F') echo "checked=\"checked\""?> />Female
 		</p>
+		<?php
+			if ($dob <> '0000-00-00')
+			{
+				echo "Your birthday is $dob<br>You can update your birthday below";
+			} 
+		?>
 		<p align="left">
 			Birthday: <select name="year1" id="year1"
 				onchange="SelDate('day1','month1','year1');">
@@ -224,15 +243,15 @@ d.selectedIndex=0;
 		</p>
 
 		<p align="left">
-			Occupation:<input type="text" name="occupation">
+			Occupation:<input type="text" value = "<?php echo $occupation?>" name="occupation">
 		</p>
 		<p align="left">
-			Facebook:<input type="text" name="facebook">
+			Facebook:<input type="text" value = "<?php echo $facebook?>" name="facebook">
 		</p>
 		<p align="left">
-			Twitter:<input type="text" name="twitter">
+			Twitter:<input type="text" value = "<?php echo $twitter?>" name="twitter">
 		</p>
 
-		<input name="Submit" type="submit" value="submit" />
+		<input name="Submit" type="submit" value="Submit" />
 	</form>
 </body>

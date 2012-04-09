@@ -1,3 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Home</title>
+<span>
+<div style="position: absolute; width: 1023px; height: 63px; z-index: 1; left: 10px; top: 16px; color: #FFFFFF; font-family: Arial, Helvetica, sans-serif; font-size: xx-large; font-style: normal; font-weight: bold; background-color: #00FFFF;" id="layer1">
+	<table>
+		<tr>
+			<td><img height="63" src="header_friendy.jpg" width="241" /></td>
+			<td bgcolor="white" align="center" style="width: 244px"><a href="home.php">
+			Home</a></td>
+			<td bgcolor="white" align="center" style="width: 231px"><a href="group_list.php">
+			Group</a></td>
+			<td bgcolor="white" align="center" style="width: 307px"><a href="home.php?signout=1">
+			Sign out</a></td>
+		</tr>
+	</table>
+</div>
+<br>
+<br>
+<br>
+</head>
+
+<body>
 <?php 
 include "common.php";
 
@@ -38,17 +64,16 @@ if (isset($_POST['title']) and isset($_POST['content']))
 	// close connection
 	mysql_close($connection);
 } else {
-	?>
-<html>
-<body>
-	<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+	?>	<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
 		<p align="left">
-			Title: <input type="text" name="title">
+			Title: <br>
+			<input type="text" name="title" style="width: 338px">
 		</p>
 
 		Content:
 		<p>
-			<textarea name="content" COLS=40 ROWS=6></textarea>
+<span>
+			<textarea name="content" COLS=40 style="height: 254px"></textarea></span>
 		</p>
 		<p align="left">
 			<input type="submit" name="submit" value="Submit">

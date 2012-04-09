@@ -47,6 +47,9 @@ $username = $_SESSION['name'];
 </head>
 
 <body>
+<table>
+<tr>
+<td>
 Welcome
 <?php echo $_SESSION['name'] ?>
 	<form action="search_user.php" method="post">
@@ -62,7 +65,7 @@ Welcome
 	//assuming session is active
 	//retrive user's data
 
-	//TODO 1. retrieve user's detail
+	//1. retrieve user's detail
 	//$user_detail_query = "INSERT INTO `user_password`(`username`, `password`) VALUES ('".$username."','".$password."')";
 	//Number of posts, number of group
 
@@ -110,10 +113,11 @@ Welcome
 			</td>
 		</tr>
 	</table>
-
+</td>
 	<?php 
 	//2. retrieve user's posts
 	?>
+<td>
 	Your Posts:
 	<br>
 	<?php 
@@ -139,12 +143,14 @@ Welcome
 	//3. retrieve user's interest groups
 
 	?>
+</td>
+<td>
 	<br> Your enrolled interest groups:
 	<br>
 	<?php
 	$user_groups = "SELECT ig.group_id, name, description FROM group_enrollment ge, interest_group ig WHERE uid = ".$uid. " AND ge.group_id=ig.group_id";
 	if ($result = mysql_query($user_groups, $connection))
-	{
+	{s
 		if (mysql_num_rows($result) > 0) {
 			echo "<table>";
 			while (list($group_id, $name, $description) = mysql_fetch_row($result)){
@@ -154,7 +160,7 @@ Welcome
 			echo "</table>";
 		} else
 		{
-			echo "You don't have any enrolled group yet. <br>";
+			echo "You don't have any enrolled group yet. <sssbr>";
 		}
 		?>
 
@@ -181,6 +187,8 @@ Welcome
 
 	?>
 	<br>
+</td>
+</tr>
 </body>
 
 
