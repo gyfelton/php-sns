@@ -25,6 +25,21 @@ function printGroupNameDescAndMembers($gid)
 		echo 'ERROR when trying to get group info'.mysql_error();
 	}
 	
+	//get member count
+	$member_count = "SELECT COUNT(uid) FROM group_enrollment WHERE group_id = $gid";
+	if ($result = mysql_query($member_count, $connection))
+	{
+	
+		list($count) = mysql_fetch_row($result);
+	
+		echo "Total number of member: $count<p>";
+	
+		mysql_free_result($result);
+	} else
+	{
+		echo 'ERROR when trying to get group member count'.mysql_error();
+	}
+		
 	//get members
 	echo "Members: <p>";
 	$members = "SELECT u.username, u.uid FROM user_password u, group_enrollment g WHERE u.uid = g.uid AND g.group_id = $gid";
@@ -51,6 +66,7 @@ function printListOfPosts($gid)
 	if ($result = mysql_query($list_of_posts, $connection))
 	{
 		if (mysql_num_rows($result) > 0) {
+			echo "Posts: <p>";
 			echo "<table>";
 			while (list($post_id, $name, $post_uid) = mysql_fetch_row($result))
 			{

@@ -25,7 +25,7 @@ if (isset($_POST['first_name']) && isset($_POST['last_name']))
 	$facebook = $_POST['facebook'];
 	$occupation = $_POST['occupation'];
 
-	$update_detail_info_query = "UPDATE `user_detail_info` SET `gender`='".$gender."',`dob`=".$dob.",`first_name`='".$first_name."',`last_name`='".$last_name."',`twitter`='".$twitter."',`facebook`='".$facebook."',`occupation`='".$occupation."' WHERE uid = ".$uid."";
+	$update_detail_info_query = "UPDATE `user_detail_info` SET `gender`='".$gender."',`dob`='".$dob."',`first_name`='".$first_name."',`last_name`='".$last_name."',`twitter`='".$twitter."',`facebook`='".$facebook."',`occupation`='".$occupation."' WHERE uid = ".$uid."";
 
 	//TODO another query to  insert the email to detail_info, then jump to filling particular page
 	if (mysql_query($update_detail_info_query , $connection))
@@ -34,7 +34,7 @@ if (isset($_POST['first_name']) && isset($_POST['last_name']))
 		header("Location: home.php");
 	} else
 	{
-		//TODO :display error message
+		echo "ERROR! ";
 	}
 }
 ?>
@@ -44,7 +44,7 @@ if (isset($_POST['first_name']) && isset($_POST['last_name']))
 <head>
 Hi
 <?php echo $usrname; ?>
-Congratulations! You have successfully registered. Please take a moment
+ Congratulations! You have successfully registered. Please take a moment
 to fill in your information below.
 </head>
 

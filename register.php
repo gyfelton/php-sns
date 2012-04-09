@@ -24,7 +24,7 @@
 	{
 		//error: password not match
 		//TODO show error message
-		die('ERROR!');
+		die('ERROR! Password does not match');
 	}
 
 	//connect to DB
@@ -48,7 +48,7 @@
 	} else
 	{
 		//TODO duplicate username, show error
-
+		die("Username already exists! Please try another username.");
 	}
 
 	// close connection
