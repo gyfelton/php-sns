@@ -30,10 +30,10 @@ if (isset($_POST['query1_group_id']))
 
 	if ($result = mysql_query($rank_member_in_group , $connection))
 	{
-		echo "Username/Count:<br>";
+		echo "Username ||| Count:<br>";
 		while (list($username, $count) = mysql_fetch_row($result))
 		{
-			echo "$username/$count<br>";
+			print "$username ||| $count<br>";
 		}
 	}
 	echo "<br><br>";
