@@ -49,9 +49,12 @@ $username = $_SESSION['name'];
 <body>
 <table>
 <tr>
-<td>
+<td width="300">
 Welcome
-<?php echo $_SESSION['name'] ?>
+<?php echo $_SESSION['name'];
+	  //edit user profile
+	  echo "<a href=\"user_detail.php?uid=".$uid."\">Edit your profile</a><p>";
+?>
 	<form action="search_user.php" method="post">
 		<input type="text" name="msg" size="20"> <input type="submit"
 			value="Search User">
@@ -74,7 +77,6 @@ Welcome
 	{
 		list($u_email, $dob) = mysql_fetch_row($result);
 		echo "Your email: $u_email<br/>" ;
-		echo "DOB: $dob<br>";
 	}
 
 
@@ -97,8 +99,6 @@ Welcome
 	//$num_post = mysql_fetch_row($result);
 	//echo $num_post;
 	
-	//edit user profile
-	echo "<a href=\"user_detail.php?uid=".$uid."\">Edit your profile</a><p>"; //TODO link data to the fields
 	?>
 	
 	
@@ -117,7 +117,7 @@ Welcome
 	<?php 
 	//2. retrieve user's posts
 	?>
-<td>
+<td width="300">
 	Your Posts:
 	<br>
 	<?php 
@@ -144,13 +144,13 @@ Welcome
 
 	?>
 </td>
-<td>
+<td width="300">
 	<br> Your enrolled interest groups:
 	<br>
 	<?php
 	$user_groups = "SELECT ig.group_id, name, description FROM group_enrollment ge, interest_group ig WHERE uid = ".$uid. " AND ge.group_id=ig.group_id";
 	if ($result = mysql_query($user_groups, $connection))
-	{s
+	{
 		if (mysql_num_rows($result) > 0) {
 			echo "<table>";
 			while (list($group_id, $name, $description) = mysql_fetch_row($result)){
@@ -165,7 +165,7 @@ Welcome
 		?>
 
 	<form action="group_list.php" method="post">
-		<input type="submit" name="groupList" value="Enroll in a group">
+		<input type="submit" name="groupList" value="Enroll/Withdraw group">
 	</form>
 
 	<form action="create_group.php" method="post">

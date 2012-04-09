@@ -8,7 +8,7 @@
 
 	function showLoginFailMsg()
 	{
-		echo 'LoginFailed:</br>'.mysql_error();
+		echo 'LoginFailed: invalid password or username</br>'.mysql_error();
 	}
 
 	// retrieve form data

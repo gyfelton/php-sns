@@ -21,7 +21,7 @@ $not_in_groups_query = "SELECT group_id, name, description FROM interest_group W
 
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Home</title>
+<title>Groups</title>
 <span>
 <div style="position: absolute; width: 1023px; height: 63px; z-index: 1; left: 10px; top: 16px; color: #FFFFFF; font-family: Arial, Helvetica, sans-serif; font-size: xx-large; font-style: normal; font-weight: bold; background-color: #00FFFF;" id="layer1">
 	<table>
@@ -96,7 +96,7 @@ $not_in_groups_query = "SELECT group_id, name, description FROM interest_group W
 		}
 	}
 
-	echo "Click 'Withdraw from this group' to withdraw<br>";
+	echo "<br>Click 'Withdraw from this group' to withdraw<br>";
 	
 	if ($result = mysql_query($enrolled_group_guery, $connection))
 	{
@@ -104,7 +104,7 @@ $not_in_groups_query = "SELECT group_id, name, description FROM interest_group W
 			echo "<table>";
 			while (list($group_id, $name, $description) = mysql_fetch_row($result))
 			{
-				"group_list.php?showDesc=".$group_id;
+				$url = "group_list.php?showDesc=".$group_id;
 				echo "<tr>";
 				echo "<td>Group name: <a href=\"".$url."\">".$name."</a></td>";
 				echo "<td>";
@@ -113,6 +113,10 @@ $not_in_groups_query = "SELECT group_id, name, description FROM interest_group W
 				echo "</form>";
 				echo "</td>";
 				echo "</tr>";
+				if ( isset($_GET['showDesc']) and $_GET['showDesc'] === $group_id)
+				{
+					echo "<tr><td>".$description."</td></tr>";
+				}
 			}
 			echo "</table>";
 		} else

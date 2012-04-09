@@ -1,6 +1,6 @@
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Home</title>
+<title>Search Result</title>
 <span>
 <div style="position: absolute; width: 1023px; height: 63px; z-index: 1; left: 10px; top: 16px; color: #FFFFFF; font-family: Arial, Helvetica, sans-serif; font-size: xx-large; font-style: normal; font-weight: bold; background-color: #00FFFF;" id="layer1">
 	<table>
@@ -27,7 +27,7 @@
 include "common.php";
 $connection = connectToDB();
 $key = $_POST["msg"];
-$search_result = "SELECT name, description FROM interest_group WHERE name LIKE '%" .$key. "%'";
+$search_result = "SELECT group_id,name, description FROM interest_group WHERE name LIKE '%" .$key. "%'";
 ?>
 <h2>Search Result:</h2>
 <br>	<?php 
@@ -39,11 +39,11 @@ $search_result = "SELECT name, description FROM interest_group WHERE name LIKE '
 			echo "<td>Name</td>";
 			echo "<td>Description</td>";
 			echo "</tr>";
-			while (list($name, $description) = mysql_fetch_row($result))
+			while (list($group_id, $name, $description) = mysql_fetch_row($result))
 			{
 		 		 echo "<tr>";
 
-		 		 echo "<td>$name</td>";
+		 		 echo "<td><a href=\"group.php?gid=$group_id\">$name</a></td>";
 
 				  echo "<td>$description</td>";
 

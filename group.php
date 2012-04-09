@@ -3,7 +3,7 @@
 
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Home</title>
+<title>Group</title>
 <span>
 <div style="position: absolute; width: 1023px; height: 63px; z-index: 1; left: 10px; top: 16px; color: #FFFFFF; font-family: Arial, Helvetica, sans-serif; font-size: xx-large; font-style: normal; font-weight: bold; background-color: #00FFFF;" id="layer1">
 	<table>
@@ -18,6 +18,8 @@
 		</tr>
 	</table>
 </div>
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -38,8 +40,8 @@ function printGroupNameDescAndMembers($gid)
 
 		if (list($name, $description, $creator_id) = mysql_fetch_row($result))
 		{
-			echo "$name<p>";
-			echo "$description <p>";
+			echo "<h1>$name</h1><p>";
+			echo "<h2>$description</h2><br>";
 		} else
 		{
 			echo 'ERROR no such group';
@@ -71,9 +73,9 @@ function printGroupNameDescAndMembers($gid)
 	$members = "SELECT u.username, u.uid FROM user_password u, group_enrollment g WHERE u.uid = g.uid AND g.group_id = $gid";
 	if ($result = mysql_query($members, $connection))
 	{
-		while (list($username, $uid) = mysql_fetch_row($result))
+		while (list($usrname, $uid) = mysql_fetch_row($result))
 		{
-			echo "<a href=\"home.php?uid=$uid\">$name</a><p>";
+			echo "$usrname<p>";
 		}
 	}
 	
@@ -98,7 +100,7 @@ function printListOfPosts($gid)
 			{
 				echo "<tr>
 				<td><a href=\"post.php?pid=".$post_id."\">".$name."</a></td>
-				<td>by <a href=\"user.php?uid=".$post_uid."\">".$post_uid."</a></td>
+				<td>by $post_uid</td>
 				</tr>";
 			}
 			echo "</table>";

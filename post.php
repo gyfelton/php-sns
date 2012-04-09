@@ -25,7 +25,8 @@
 <br>
 </head>
 
-<body><?php
+<body>
+<?php
 include "common.php";
 
 //init the session
@@ -50,6 +51,6 @@ if (isset($_GET['pid']))
 		//TODO show error
 	}
 }
-
+?>
 </body>
 </html>

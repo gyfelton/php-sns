@@ -3,7 +3,7 @@
 
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Home</title>
+<title>Create a group</title>
 <span>
 <div style="position: absolute; width: 1023px; height: 63px; z-index: 1; left: 10px; top: 16px; color: #FFFFFF; font-family: Arial, Helvetica, sans-serif; font-size: xx-large; font-style: normal; font-weight: bold; background-color: #00FFFF;" id="layer1">
 	<table>
@@ -18,6 +18,9 @@
 		</tr>
 	</table>
 </div>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -57,10 +60,12 @@ if (isset($_POST['group_name']) and isset($_POST['group_desc']))
 		} else
 		{
 			//show ERROR
+			die ("ERROR! ");
 		}
 	} else
 	{
 		//TODO show error
+		die ("ERROR! Group name already exists!");
 	}
 
 	// close connection

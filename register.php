@@ -11,7 +11,7 @@
 	{
 		//TODO show error message
 		//error
-		die('ERROR!');
+		die('ERROR! Please fill up all fields required!');
 	}
 
 	//now connect to database and check whether can register successfully or not

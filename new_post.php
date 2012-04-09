@@ -3,7 +3,7 @@
 
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Home</title>
+<title>New post</title>
 <span>
 <div style="position: absolute; width: 1023px; height: 63px; z-index: 1; left: 10px; top: 16px; color: #FFFFFF; font-family: Arial, Helvetica, sans-serif; font-size: xx-large; font-style: normal; font-weight: bold; background-color: #00FFFF;" id="layer1">
 	<table>
@@ -18,6 +18,12 @@
 		</tr>
 	</table>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -39,11 +45,11 @@ if (!isset($_SESSION['id']) || !isset($_GET['gid']))
 
 $uid = $_SESSION['id'];
 $gid = $_GET['gid'];
-if (isset($_POST['title']) and isset($_POST['content']))
+if (isset($_POST['title']) and isset($_POST['content']) and $_POST['title'] <> '' )
 {
 	$connection = connectToDB();
-	$new_post_query = "INSERT INTO `user_post`(`uid`, `title`, `full_text`)
-	VALUES (".$uid.",'".$_POST['title']."','".$_POST['content']."')";
+	$new_post_query = "INSERT INTO `user_post`(`uid`, `title`, `full_text`, date)
+	VALUES (".$uid.",'".$_POST['title']."','".$_POST['content']."', NOW() )";
 	if (mysql_query($new_post_query, $connection))
 	{
 		//link the post to the group
@@ -52,6 +58,7 @@ if (isset($_POST['title']) and isset($_POST['content']))
 		VALUES (".$post_id.",".$gid.")";
 		if (mysql_query($link_post_to_group, $connection)) {
 			echo 'Successful!';
+			header("Location: group.php?gid=$gid");
 		} else
 		{
 			//show ERROR

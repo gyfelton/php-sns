@@ -2,11 +2,11 @@
 include "common.php";
 $connection = connectToDB();
 $key = $_POST["msg"];
-$search_result = "SELECT first_name, last_name, username FROM user_detail_info, user_password WHERE user_detail_info.first_name LIKE '%" .$key. "%' OR user_detail_info.last_name LIKE '%" .$key. "%' OR user_password.username LIKE '%" .$key. "%'";
+$search_result = "SELECT username, first_name, last_name, email  FROM user_detail_info, user_password WHERE (user_detail_info.first_name LIKE '%" .$key. "%' OR user_detail_info.last_name LIKE '%" .$key. "%' OR user_password.username LIKE '%" .$key. "%') AND  user_detail_info.uid = user_password.uid";
 ?>
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Home</title>
+<title>Search result</title>
 <span>
 <div style="position: absolute; width: 1023px; height: 63px; z-index: 1; left: 10px; top: 16px; color: #FFFFFF; font-family: Arial, Helvetica, sans-serif; font-size: xx-large; font-style: normal; font-weight: bold; background-color: #00FFFF;" id="layer1">
 	<table>
@@ -38,15 +38,17 @@ $search_result = "SELECT first_name, last_name, username FROM user_detail_info, 
 			echo "<tr>";
 			echo "<td>username</td>";
 			echo "<td>Full name</td>";
+			echo "<td>Email address</td>";
 			echo "</tr>";
-			while (list($username, $first_name, $last_name) = mysql_fetch_row($result))
+			while (list($username, $first_name, $last_name, $email) = mysql_fetch_row($result))
 			{
 		 		 echo "<tr>";
 
 				  echo "<td>$username</td>";
 
 		 		 echo "<td>$first_name $last_name</td>";
-
+				 
+		 		 echo "<td>$email</td>";
 		 		 echo "</tr>";
 			}
 			echo "</table>";
