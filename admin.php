@@ -118,7 +118,7 @@ if (isset($_POST['query3_date']))
 ?>
 
 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
-		Enter the date here in the format "yyyy-mm-dd";
+		Enter the date here in the format "yyyy-mm-dd": 
 			<input type="text" name="query3_date">
 		<p align="left">
 			<input type="submit" name="submit" value="Execute">

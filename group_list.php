@@ -52,7 +52,7 @@ $not_in_groups_query = "SELECT group_id, name, description FROM interest_group W
 			echo "Success!<br>";
 		} else
 		{
-			echo "ERROR!<br>";
+			echo "ERROR!".mysql_error()."<br><p>";
 		}
 	} else if (isset($_GET['withdraw_from']))
 	{
@@ -63,7 +63,7 @@ $not_in_groups_query = "SELECT group_id, name, description FROM interest_group W
 			echo "Success!<br><p>";
 		} else
 		{
-			echo "ERROR!<br><p>";
+			echo "ERROR!".mysql_error()."<br><p>";
 		}
 	}
 
@@ -86,7 +86,7 @@ $not_in_groups_query = "SELECT group_id, name, description FROM interest_group W
 				echo "</tr>";
 				if ( isset($_GET['showDesc']) and $_GET['showDesc'] === $group_id)
 				{
-					echo "<tr><td>".$description."</td></tr>";
+					echo "<tr><td><h3>Description: ".$description."</h3></td></tr>";
 				}
 			}
 			echo "</table>";

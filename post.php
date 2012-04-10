@@ -45,7 +45,7 @@ if (isset($_GET['pid']))
 		list($post_name, $post_full_text, $username, $groupname) = mysql_fetch_row($result);
 		echo $post_name."<p>";
 		echo "By ".$username."<p> From ".$groupname."<p>";
-		echo $post_full_text."<p>";
+		echo "<h3>$post_full_text.</h3><p>";
 	} else
 	{
 		//TODO show error

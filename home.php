@@ -50,11 +50,6 @@ $username = $_SESSION['name'];
 <table>
 <tr>
 <td width="300">
-Welcome
-<?php echo $_SESSION['name'];
-	  //edit user profile
-	  echo "<a href=\"user_detail.php?uid=".$uid."\">Edit your profile</a><p>";
-?>
 	<form action="search_user.php" method="post">
 		<input type="text" name="msg" size="20"> <input type="submit"
 			value="Search User">
@@ -63,6 +58,15 @@ Welcome
 		<input type="text" name="msg" size="20"> <input type="submit"
 			value="Search Group">
 	</form>
+	
+<img width=200 height=200 src="avatar.png" /><br>
+Welcome
+<?php echo $_SESSION['name'];
+	  echo "<br>";
+	  //edit user profile
+	  echo "<a href=\"user_detail.php?uid=".$uid."\">Edit your profile</a><p>";
+?>
+
 	<?php
 
 	//assuming session is active
@@ -76,7 +80,7 @@ Welcome
 	if ($result = mysql_query($user_detail_query, $connection))
 	{
 		list($u_email, $dob) = mysql_fetch_row($result);
-		echo "Your email: $u_email<br/>" ;
+		echo "Your email: $u_email<br><br>" ;
 	}
 
 
